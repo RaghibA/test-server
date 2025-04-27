@@ -11,14 +11,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: SSH and Apply Manifests
-        uses: appleboy/ssh-action@v1.0.3
+      - name: Set up kubectl
+        uses: kubernetes-actions/setup-kubectl@v3
         with:
-          host: ${{ secrets.K3S_HOST }}
-          username: ${{ secrets.K3S_USER }}
-          key: ${{ secrets.K3S_PRIVATE_KEY }}
-          port: ${{ secrets.K3S_SSH_PORT }}
-          script: |
-            kubectl apply -f k8s/deployment.yaml -n default
-            kubectl apply -f k8s/service.yaml -n default
-            kubectl apply -f k8s/ingress.yaml -n default
+          kubeconfig: ${{ secrets.KUBECONFIG_SECRET }}
+
+      - name: Apply Kubernetes Manifests
+        run: |
+          kubectl apply -f k8s/deployment.yaml -n default
+          kubectl apply -f k8s/service.yaml -n default
+          kubectl apply -f k8s/ingress.yaml -n default
