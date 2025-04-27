@@ -1,21 +1,17 @@
 name: Deploy to K3s
-
 on:
   push:
     branches: [ "main" ] # Or your main development branch
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
-      - name: Set up kubectl
-        uses: kubernetes-actions/setup-kubectl@v3
+      - name: Set up kubectl and deploy
+        uses: tale/kubectl-action@v1
         with:
-          kubeconfig: ${{ secrets.KUBECONFIG_SECRET }}
-
+          base64-kube-config: ${{ secrets.KUBECONFIG_SECRET }}
       - name: Apply Kubernetes Manifests
         run: |
           kubectl apply -f k8s/deployment.yaml -n default
