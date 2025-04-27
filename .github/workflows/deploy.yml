@@ -1,0 +1,16 @@
+name: Deploy to K3s
+
+on:
+  push:
+    branches: [ "main" ] # Or your main development branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Add steps here to build your application (if needed),
+      # build and push your Docker image (if the image tag changes),
+      # and apply the Kubernetes manifests to your k3s cluster.
