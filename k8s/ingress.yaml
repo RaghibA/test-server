@@ -4,6 +4,7 @@ metadata:
   name: test-server-ingress
   namespace: default
   annotations:
+    cert-manager.io/issuer: "letsencrypt-prod"  # Adjust if you're using cert-manager
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
     traefik.ingress.kubernetes.io/router.tls: "true"
 spec:
