@@ -2,9 +2,9 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: test-server-ingress
-  namespace: test-http-server
+  namespace: test-http-server  # Change this to match your Service's namespace
   annotations:
-    cert-manager.io/issuer: "letsencrypt-prod"  # Adjust if you're using cert-manager
+    cert-manager.io/issuer: "letsencrypt-prod"
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
     traefik.ingress.kubernetes.io/router.tls: "true"
 spec:
@@ -16,7 +16,7 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: test-service.test-http-server.svc.cluster.local
+            name: test-service  # Use the simple Service name
             port:
               number: 80
   tls:
