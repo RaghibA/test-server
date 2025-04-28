@@ -16,7 +16,7 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: test-server-service
+            name: test-service.test-http-server.svc.cluster.local
             port:
               number: 80
   tls:
