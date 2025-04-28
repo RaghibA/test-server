@@ -2,6 +2,8 @@ name: Deploy to K3s
 on:
   push:
     branches: [ "main" ] # Or your main development branch
+  workflow_dispatch:
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
