@@ -16,6 +16,6 @@ jobs:
           base64-kube-config: ${{ secrets.KUBECONFIG_SECRET }}
       - name: Apply Kubernetes Manifests
         run: |
-          kubectl apply -f k8s/deployment.yaml -n default
-          kubectl apply -f k8s/service.yaml -n default
-          kubectl apply -f k8s/ingress.yaml -n default
+          kubectl apply -f k8s/deployment.yaml -n test-http-server
+          kubectl apply -f k8s/service.yaml -n test-http-server
+          kubectl apply -f k8s/ingress.yaml -n test-http-server
